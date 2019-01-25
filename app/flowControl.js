@@ -12,6 +12,17 @@ flowControlAnswers = {
    * @returns {String} The string 'fizz', 'buzz', or 'fizzbuzz'
    */
   fizzBuzz: function fizzBuzz(num) {
-
+    switch (true) {
+      case (num % 3 === 0 && num % 5 === 0):
+        return 'fizzbuzz';
+      case (num % 3 === 0):
+        return 'fizz';
+      case (num % 5 === 0):
+        return 'buzz';
+      case (!isNaN(num)):
+        return num;
+      default:
+        return false;
+    }
   },
 };
