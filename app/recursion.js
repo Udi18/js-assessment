@@ -1,6 +1,6 @@
 recursionAnswers = {
   /**
-   * List the files in a given directory, of a filesystem described by data.
+   * List the files in a given directory, of a filesystem described by obj.
    * Data is an object that looks like this:
    * {
       dirName: 'app',
@@ -17,7 +17,29 @@ recursionAnswers = {
    * @returns {Number[]} The files under the directory dirName, including subdiretories.
    */
   listFiles: function listFiles(data, dirName) {
-
+    let answer = [];
+    const findFiles = (obj) => {
+      if (obj.files) answer = answer.concat(obj.files);
+      if (obj.subDirs.length > 0) {
+        obj.subDirs.forEach(obj2 => findFiles(obj2));
+      }
+    };
+    const findDir = (obj, dirNameStr) => {
+      let dirObj = {};
+      for (let obj2 of obj.subDirs) {
+        if (obj2.dirName) {
+          if (obj2.dirName === dirNameStr) {
+            dirObj = obj2;
+            break;
+          }
+        }
+      }
+      return dirObj;
+    };
+    if (dirName) {
+      findFiles(findDir(data, dirName));
+    } else findFiles(data);
+    return answer;
   },
 
   /**
@@ -30,6 +52,7 @@ recursionAnswers = {
    * @returns {Number} The nth fibonacci number
    */
   fibonacci: function fibonacci(n) {
-
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
   },
 };
