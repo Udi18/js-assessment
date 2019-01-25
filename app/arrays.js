@@ -146,7 +146,7 @@ arraysAnswers = {
    */
   findAllOccurrences: function findAllOccurrences(arr, target) {
     return arr.map((number, index) => {
-      if (number == target) {
+      if (number === target) {
         return index;
       }
     }).filter(value => value !== undefined);
