@@ -32,6 +32,15 @@ arraysAnswers = {
     return arr.filter(number => number !== item);
   },
 
+  removeWithoutCopy: function removeWithoutCopy(arr, item) {
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (arr[i] === item) {
+        arr.splice(i, item);
+      }
+    }
+    return arr;
+  },
+
   /**
    * Adds a number, item, to the end of an array, arr.
    * 
